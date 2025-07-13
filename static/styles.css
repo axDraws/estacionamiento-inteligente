@@ -1,0 +1,484 @@
+/* Importar fuentes modernas */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* Reset y variables CSS */
+:root {
+  --primary-color: #00d4ff;
+  --secondary-color: #ff6b6b;
+  --accent-color: #4ecdc4;
+  --bg-primary: #0a0a0f;
+  --bg-secondary: #1a1a2e;
+  --bg-tertiary: #16213e;
+  --text-primary: #ffffff;
+  --text-secondary: #b8c5d6;
+  --border-color: #2d3748;
+  --shadow-color: rgba(0, 212, 255, 0.3);
+  --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --gradient-secondary: linear-gradient(135deg, #00d4ff 0%, #4ecdc4 100%);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Fondo con gradiente animado */
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg-primary);
+  background-image: 
+    radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255, 107, 107, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 40% 80%, rgba(78, 205, 196, 0.1) 0%, transparent 50%);
+  color: var(--text-primary);
+  padding: 20px;
+  min-height: 100vh;
+  line-height: 1.6;
+  animation: backgroundPulse 10s ease-in-out infinite alternate;
+}
+
+@keyframes backgroundPulse {
+  0% { background-size: 100% 100%; }
+  100% { background-size: 120% 120%; }
+}
+
+/* Títulos con efectos modernos */
+h1, h2, h3 {
+  margin: 30px 0 20px;
+  font-weight: 700;
+  background: var(--gradient-secondary);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  position: relative;
+  animation: slideInDown 0.8s ease-out;
+}
+
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2rem; }
+h3 { font-size: 1.5rem; }
+
+h1::after, h2::after, h3::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background: var(--gradient-secondary);
+  border-radius: 2px;
+  animation: expandWidth 1s ease-out 0.5s both;
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes expandWidth {
+  from { width: 0; }
+  to { width: 60px; }
+}
+
+/* Formularios modernos con glassmorphism */
+form {
+  background: rgba(26, 26, 46, 0.7);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 30px;
+  margin-bottom: 30px;
+  max-width: 500px;
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  animation: slideInUp 0.8s ease-out;
+  transition: all 0.3s ease;
+}
+
+form:hover {
+  transform: translateY(-5px);
+  box-shadow: 
+    0 25px 50px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Inputs modernos */
+form input {
+  width: 100%;
+  padding: 15px 20px;
+  margin: 10px 0 20px;
+  border: 2px solid transparent;
+  border-radius: 12px;
+  background: rgba(45, 55, 72, 0.8);
+  color: var(--text-primary);
+  font-size: 16px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+form input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  background: rgba(45, 55, 72, 1);
+  box-shadow: 
+    0 0 0 3px rgba(0, 212, 255, 0.1),
+    0 10px 20px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px);
+}
+
+form input::placeholder {
+  color: var(--text-secondary);
+  transition: all 0.3s ease;
+}
+
+form input:focus::placeholder {
+  opacity: 0.7;
+  transform: translateY(-2px);
+}
+
+/* Botones con efectos modernos */
+form button {
+  background: var(--gradient-secondary);
+  color: var(--bg-primary);
+  padding: 15px 30px;
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+form button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s ease;
+}
+
+form button:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 
+    0 15px 30px rgba(0, 212, 255, 0.4),
+    0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+form button:hover::before {
+  left: 100%;
+}
+
+form button:active {
+  transform: translateY(-1px) scale(0.98);
+}
+
+/* Tablas modernas */
+.table-container {
+  overflow-x: auto;
+  border-radius: 16px;
+  background: rgba(26, 26, 46, 0.7);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: 30px;
+  animation: fadeInScale 0.8s ease-out;
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 18px 20px;
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+th {
+  background: var(--gradient-primary);
+  color: var(--text-primary);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 14px;
+  position: relative;
+}
+
+th::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--primary-color);
+}
+
+tr {
+  transition: all 0.3s ease;
+}
+
+tr:hover {
+  background: rgba(0, 212, 255, 0.1);
+  transform: scale(1.01);
+}
+
+td {
+  background: rgba(22, 33, 62, 0.5);
+  color: var(--text-secondary);
+}
+
+tr:hover td {
+  color: var(--text-primary);
+}
+
+/* Links modernos */
+a {
+  color: var(--secondary-color);
+  text-decoration: none;
+  position: relative;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--secondary-color);
+  transition: width 0.3s ease;
+}
+
+a:hover {
+  color: #ff8e8e;
+  transform: translateY(-1px);
+}
+
+a:hover::after {
+  width: 100%;
+}
+
+/* Animaciones de carga */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+.loading {
+  animation: pulse 2s infinite;
+}
+
+/* Efectos de scroll */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease;
+}
+
+.scroll-reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Responsive mejorado */
+@media (max-width: 768px) {
+  body {
+    padding: 15px;
+  }
+  
+  h1 { font-size: 2rem; }
+  h2 { font-size: 1.7rem; }
+  h3 { font-size: 1.3rem; }
+  
+  form {
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  form input, form button {
+    width: 100%;
+    margin: 8px 0 15px;
+  }
+  
+  .table-container {
+    border-radius: 12px;
+  }
+  
+  table, thead, tbody, th, td, tr {
+    display: block;
+  }
+  
+  thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+  
+  tr {
+    background: rgba(26, 26, 46, 0.9);
+    border-radius: 12px;
+    margin-bottom: 15px;
+    padding: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  td {
+    border: none;
+    position: relative;
+    padding: 12px 15px 12px 40%;
+    text-align: right;
+    background: transparent;
+  }
+  
+  td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 15px;
+    top: 12px;
+    width: 35%;
+    text-align: left;
+    font-weight: 600;
+    color: var(--primary-color);
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 1px;
+  }
+  
+  /* Fallback para navegadores que no soporten attr() */
+  td:nth-of-type(1)::before { content: "Nombre"; }
+  td:nth-of-type(2)::before { content: "Apellido"; }
+  td:nth-of-type(3)::before { content: "Status"; }
+  td:nth-of-type(4)::before { content: "Entrada"; }
+  td:nth-of-type(5)::before { content: "Salida"; }
+}
+
+/* Micro-interacciones */
+@media (hover: hover) {
+  .interactive:hover {
+    transform: translateY(-2px);
+    transition: transform 0.2s ease;
+  }
+}
+
+/* Scroll suave */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Personalización de scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary-color);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-color);
+}
+body {
+    font-family: Arial, sans-serif;
+    margin: 10px;
+    padding: 0;
+    background-color: #f8f8f8;
+}
+
+form, .table-container {
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+input, button {
+    width: 100%;
+    max-width: 400px;
+    padding: 10px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+table, th, td {
+    border: 1px solid #ccc;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+}
+
+@media (max-width: 600px) {
+    table {
+        font-size: 12px;
+    }
+
+    input, button {
+        font-size: 14px;
+    }
+}
+

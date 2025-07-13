@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Panel Administrador</title>
+    <link rel="stylesheet" href="../static/styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <h2>Panel de Administrador</h2>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <ul class="flashes">
+        {% for category, message in messages %}
+          <li class="{{ category }}">{{ message }}</li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+    <h3>Control de Barreras</h3>
+    <div class="barrera-control">
+        <button onclick="window.location.href='/abrir_barrera/entrada'">Abrir Barrera de Entrada</button>
+        <button onclick="window.location.href='/abrir_barrera/salida'">Abrir Barrera de Salida</button>
+    </div>
+    <br>
+
+    <h3>Registrar Residente</h3>
+    <form action="/registro_residente" method="POST">
+        <input type="text" name="nombre" placeholder="Nombre" required><br>
+        <input type="text" name="apellidos" placeholder="Apellidos" required><br>
+        <input type="text" name="direccion" placeholder="Dirección" required><br>
+        <input type="text" name="modelo_carro" placeholder="Modelo del Carro" required><br>
+        <input type="text" name="color_carro" placeholder="Color del Carro" required><br>
+        <input type="text" name="placas" placeholder="Placas" required><br>
+        <input type="text" name="rfid_uid" placeholder="RFID UID (no funcional aún)" value="N/A"><br> 
+        <button type="submit">Registrar Residente</button>
+    </form>
+
+    <h3>Registrar Administrador</h3>
+    <form action="/registro_admin" method="POST">
+        <input type="text" name="nombre" placeholder="Nombre" required><br>
+        <input type="text" name="usuario" placeholder="Usuario" required><br>
+        <input type="password" name="password" placeholder="Contraseña" required><br>
+        <button type="submit">Registrar Administrador</button>
+    </form>
+
+    <h3>Residentes Registrados</h3>
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre</th><th>Apellidos</th><th>Dirección</th><th>Modelo</th><th>Color</th><th>Placas</th><th>RFID</th><th>Eliminar</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for r in residentes %}
+                <tr>
+                    <td>{{ r['nombre'] }}</td>
+                    <td>{{ r['apellidos'] }}</td>
+                    <td>{{ r['direccion'] }}</td>
+                    <td>{{ r['modelo_carro'] }}</td>
+                    <td>{{ r['color_carro'] }}</td>
+                    <td>{{ r['placas'] }}</td>
+                    <td>{{ r['rfid_uid'] }}</td>
+                    <td><a href="/eliminar_residente/{{ r['id'] }}">❌</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <h3>Historial de Entradas y Salidas</h3>
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre</th><th>Apellido</th><th>Status</th><th>Entrada</th><th>Salida</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for h in historial %}
+                <tr>
+                    <td>{{ h['nombre'] }}</td>
+                    <td>{{ h['apellido'] }}</td>
+                    <td>{{ h['status'] }}</td>
+                    <td>{{ h['fecha_hora_entrada'] }}</td>
+                    <td>{{ h['fecha_hora_salida'] or '-' }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <h3>Visitantes Registrados</h3>
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre</th><th>Apellidos</th><th>Teléfono</th><th>Modelo</th><th>Color</th><th>Placas</th><th>UID Residente</th><th>Entrada</th><th>Salida</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for v in visitantes %}
+                <tr>
+                    <td>{{ v['nombre'] }}</td>
+                    <td>{{ v['apellidos'] }}</td>
+                    <td>{{ v['telefono'] }}</td>
+                    <td>{{ v['modelo_carro'] }}</td>
+                    <td>{{ v['color_carro'] }}</td>
+                    <td>{{ v['placas'] }}</td>
+                    <td>{{ v['residente_uid'] }}</td>
+                    <td>{{ v['fecha_hora_entrada'] }}</td>
+                    <td>{{ v['fecha_hora_salida'] or '-' }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <br>
+    <a href="/logout">Cerrar Sesión</a>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registro de Visitante</title>
+    <link rel="stylesheet" href="../static/styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <h2>Formulario de Registro - Entrada de Visitante</h2>
+    <form action="/registro_visitante" method="POST">
+        <input type="text" name="nombre" placeholder="Nombre" required><br>
+        <input type="text" name="apellidos" placeholder="Apellidos" required><br>
+        <input type="text" name="telefono" placeholder="Teléfono" required><br>
+        <input type="text" name="modelo_carro" placeholder="Modelo del Carro" required><br>
+        <input type="text" name="color_carro" placeholder="Color del Carro" required><br>
+        <input type="text" name="placas" placeholder="Placas (Ej: ABC-123)" required><br>
+        <input type="text" name="residente_uid" placeholder="Nombre/UID del Residente" required><br>
+        <button type="submit">Registrar Entrada</button>
+    </form>
+
+    <hr> <h2>Registrar Salida de Visitante</h2>
+    <p>Introduce las placas de tu vehículo para registrar tu salida y abrir la barrera:</p>
+    <form action="/registro_salida_visitante" method="POST">
+        <input type="text" name="placas_salida" placeholder="Placas del vehículo" required><br>
+        <button type="submit">Registrar Salida y Abrir Barrera</button>
+    </form>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <ul class="flashes">
+        {% for category, message in messages %}
+          <li class="{{ category }}">{{ message }}</li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+</body>
+</html>
+
